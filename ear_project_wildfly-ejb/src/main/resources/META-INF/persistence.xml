@@ -20,16 +20,23 @@
    xsi:schemaLocation="
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-   <persistence-unit name="primary">
+   <persistence-unit name="earAppPU" transaction-type="JTA">
       <!-- If you are running in a production environment, add a managed 
          data source, this example data source is just for development and testing! -->
       <!-- The datasource is deployed as <EAR>/META-INF/ear_project_wildfly-ds.xml, you
          can find it in the source at ear/src/main/application/META-INF/ear_project_wildfly-ds.xml -->
-      <jta-data-source>java:jboss/datasources/ear_project_wildflyDS</jta-data-source>
+      <!--<jta-data-source>java:jboss/datasources/ear_project_wildflyDS</jta-data-source>-->
+      <provider>org.hibernate.ejb.HibernatePersistence</provider>
+      <exclude-unlisted-classes>false</exclude-unlisted-classes>
+      <jta-data-source>java:jboss/datasources/ear-wildfly-projectDS</jta-data-source>
       <properties>
          <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
+         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+
+         <property name="hibernate.show_sql" value="false"/>
+         <property name="hibernate.format_sql" value="true"/>
+         <property name="hibernate.transaction.flush_before_completion" value="true"/>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
       </properties>
    </persistence-unit>
 </persistence>
