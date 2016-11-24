@@ -21,7 +21,7 @@ public class Section  implements java.io.Serializable {
 
     private Integer idSection;
     private Edition edition;
-    private String sectionname;
+    private String section;
     private Set<Article> articles = new HashSet<Article>(0);
 
     public Section() {
@@ -31,9 +31,9 @@ public class Section  implements java.io.Serializable {
     public Section(Edition edition) {
         this.edition = edition;
     }
-    public Section(Edition edition, String sectionname, Set<Article> articles) {
+    public Section(Edition edition, String section, Set<Article> articles) {
         this.edition = edition;
-        this.sectionname = sectionname;
+        this.section = section;
         this.articles = articles;
     }
 
@@ -59,12 +59,12 @@ public class Section  implements java.io.Serializable {
 
 
     @Column(name="sectionname", length=50)
-    public String getSectionname() {
-        return this.sectionname;
+    public String getSection() {
+        return this.section;
     }
 
-    public void setSectionname(String sectionname) {
-        this.sectionname = sectionname;
+    public void setSection(String sectionname) {
+        this.section = sectionname;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="section")

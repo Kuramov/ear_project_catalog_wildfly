@@ -19,14 +19,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Catalog implements java.io.Serializable {
 
     private Integer idCatalog;
-    private String jornal;
+    private String journal;
     private Set<Edition> editions = new HashSet<Edition>(0);
 
     public Catalog() {
     }
 
-    public Catalog(String jornal, Set<Edition> editions) {
-        this.jornal = jornal;
+    public Catalog(String journal, Set<Edition> editions) {
+        this.journal = journal;
         this.editions = editions;
     }
 
@@ -43,12 +43,12 @@ public class Catalog implements java.io.Serializable {
 
 
     @Column(name = "jornal", length = 100)
-    public String getJornal() {
-        return this.jornal;
+    public String getJournal() {
+        return this.journal;
     }
 
-    public void setJornal(String jornal) {
-        this.jornal = jornal;
+    public void setJournal(String jornal) {
+        this.journal = jornal;
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "catalog", cascade = {CascadeType.ALL})
