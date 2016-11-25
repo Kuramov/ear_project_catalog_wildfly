@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{catalogBean.id}'/>
+		<f:event type="preRenderView" listener='#{catalogBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Catalog"/>
+
+	<ui:define name="header">
+		Catalog
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Catalog
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="catalogBeanCatalogJournal" value="Journal:"/>
+			<h:outputText id="catalogBeanCatalogJournal" value="#{catalogBean.catalog.journal}"/>
+			<h:outputText/>
+			<h:outputLabel for="catalogBeanCatalogEditions" value="Editions:"/>
+			<h:dataTable id="catalogBeanCatalogEditions" styleClass="data-table" value="#{forgeview:asList(catalogBean.catalog.editions)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Edition"/>
+					</f:facet>
+					<h:link outcome="/edition/view">
+						<f:param name="id" value="#{_item.idEdition}"/>
+						<h:outputText id="_itemEdition" value="#{_item.edition}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

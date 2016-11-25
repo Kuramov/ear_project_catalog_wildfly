@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{editionBean.id}'/>
+		<f:event type="preRenderView" listener='#{editionBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Edition"/>
+
+	<ui:define name="header">
+		Edition
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Edition
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="editionBeanEditionCatalog" value="Catalog:"/>
+			<h:link id="editionBeanEditionCatalog" outcome="/catalog/view" rendered="#{!empty editionBean.edition.catalog}" value="#{editionBean.edition.catalog}">
+				<f:param name="id" value="#{editionBean.edition.catalog.idCatalog}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="editionBeanEditionEdition" value="Edition:"/>
+			<h:outputText id="editionBeanEditionEdition" value="#{editionBean.edition.edition}"/>
+			<h:outputText/>
+			<h:outputLabel for="editionBeanEditionSections" value="Sections:"/>
+			<h:dataTable id="editionBeanEditionSections" styleClass="data-table" value="#{forgeview:asList(editionBean.edition.sections)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Section"/>
+					</f:facet>
+					<h:link outcome="/section/view">
+						<f:param name="id" value="#{_item.idSection}"/>
+						<h:outputText id="_itemSection" value="#{_item.section}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
