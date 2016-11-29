@@ -69,6 +69,16 @@
                         have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <fileNameMapping>no-version</fileNameMapping>
+                    <!--set context root for wed module-->
+                    <modules>
+                        <webModule>
+                            <groupId>ru.kuramov_ear_project</groupId>
+                            <artifactId>ear_project_wildfly-web</artifactId>
+                            <uri>ear_project_wildfly-web.war</uri>
+                            <bundleFileName>ear_project_wildfly-web.war</bundleFileName>
+                            <contextRoot>/catalogs</contextRoot>
+                        </webModule>
+                    </modules>
                 </configuration>
             </plugin>
             <!-- The WildFly plugin deploys your ear to a local WildFly container -->
