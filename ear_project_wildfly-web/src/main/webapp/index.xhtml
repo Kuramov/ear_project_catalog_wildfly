@@ -21,11 +21,15 @@
 
                     <p:outputLabel for="number" value="Number:" />
                     <p:spinner id="number" value="0"/>
+
                 </h:panelGrid>
             </p:panel>
-
             <p:commandButton value="Submit" update="panel"  />
         </h:form>
+        <p:spacer height="20"/>
+        <p:panelGrid columns="1" style="width: 99%;">
+            <p:link outcome="/catalogs/catalogs.xhtml" value="Catalogs"/>
+        </p:panelGrid>
     </h:body>
 </f:view>
 </html>

@@ -48,4 +48,11 @@ public class CatalogDao {
 		}
 		return findAllQuery.getResultList();
 	}
+
+	public List<Catalog> listAll() {
+		TypedQuery<Catalog> findAllQuery = em
+				.createNamedQuery("findCatalogAll", Catalog.class);
+		return findAllQuery.getResultList();
+	}
+
 }
