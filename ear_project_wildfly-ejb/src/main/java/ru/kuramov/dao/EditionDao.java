@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import ru.kuramov.model.Catalog;
 import ru.kuramov.model.Edition;
 
 /**
@@ -18,6 +20,16 @@ public class EditionDao {
 
 	public void create(Edition entity) {
 		em.persist(entity);
+	}
+
+	public void create(Edition edition, Catalog catalog) {
+
+
+
+		edition.setCatalog(catalog);
+
+		em.persist(edition);
+
 	}
 
 	public void deleteById(Integer id) {

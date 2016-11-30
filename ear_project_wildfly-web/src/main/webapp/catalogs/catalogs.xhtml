@@ -38,12 +38,12 @@
             <h:form>
                 <p:panelGrid columns="2" cellpadding="5">
                     <h:outputLabel for="journal" value="Journal name:" />
-                    <p:inputText id="journal" required="true" />
+                    <p:inputText id="journal" required="true" value="#{newCatalog.journal}"/>
 
                     <p:outputLabel for="edition" value="Edition Label:" />
-                    <p:inputText id="edition" required="false" />
+                    <p:inputText id="edition" required="true" value="#{newEdition.edition}"/>
 
-                    <p:commandButton value="Create"/>
+                    <p:commandButton value="Create" action="#{catalogCreate.createCatalog}" ajax="false"/>
                 </p:panelGrid>
             </h:form>
         </p:panel>
